@@ -1,18 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Task} from './Task';
-
-const tasks = [
-  {id: 3, due: '2020-05-20', task: "Finish up project 2 for CS268."},
-  {id: 2, due: '2020-05-30', task: "Sit poolside and sip on a drink with a little umbrella in it."},
-  {id: 1, due: '2020-09-04', task: "Start another year of school."}
-];
+import {useSelector, useDispatch} from 'react-redux';
+import {loadTasks, loadDue} from './actions';
 
 
 function App() {
+
+  const tasks = useSelector(state => state.tasks);
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(loadDue("2020-05-20"));
+  }, [dispatch]);
+
+
   return (
     <div className="task-root">
-      {tasks.map(task => <Task task = {task} />)}
+
+      {tasks.map(task => <Task key = {task.id} task = {task} />)}
     </div>
   );
 }
