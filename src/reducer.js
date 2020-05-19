@@ -1,4 +1,4 @@
-import { Action } from "./actions";
+import {Action} from "./actions";
 
 const initialState = {
     isWaiting: false,
@@ -13,7 +13,51 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 tasks: action.payload,
-            }
+            };
+        case Action.FinishAddingTask:
+            return {
+                ...state,
+                tasks: [action.payload, ...state.tasks],
+            };
+        case Action.LeaveEditMode:
+        return {
+             ...state,
+            tasks: state.tasks.map(task => {
+                if(task.id === action.payload.id){
+                    return {...task, isEditing: undefined};
+                }
+                else{
+                    return task;
+                }
+            
+            }),
+        };
+        case Action.FinishSavingTask:
+            return {
+                ...state,
+                tasks: state.tasks.map(task => {
+                    if(task.id === action.payload.id){
+                        return action.payload;
+                    }
+                    else{
+                        return task;
+                    }
+            
+             }),
+         };
+        case Action.EnterEditMode:
+        return {
+             ...state,
+            tasks: state.tasks.map(task => {
+                if(task.id === action.payload.id){
+                    return {...task, isEditing: true};
+                }
+                else{
+                    return task;
+                }
+            
+            }),
+        };
         default:
             return state;
     }
