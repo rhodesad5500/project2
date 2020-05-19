@@ -23,7 +23,7 @@ export function Task(props) {
             due,
             task: info,
         }));
-    }
+    };
 
     if(task.isEditing){
         return (
@@ -34,6 +34,7 @@ export function Task(props) {
                         setDue(e.target.value)}/>
                        <button onClick={onSave}>Save</button>
                        <button onClick={onCancel}>Cancel</button>
+                       <button>Delete</button>
                     </div>
                     <div className="task-info">
                         <textarea value={info} onChange ={e =>
