@@ -7,7 +7,7 @@ import {loadDue, startAddingTask} from './actions';
 
 const initialDate = new Date();
 const year = initialDate.getFullYear();
-const month = initialDate.getMonth() + 1;
+const month = initialDate.getMonth() + 2;
 const day = initialDate.getDate();
 const date = year + "-" + month + "-" + day;
 
@@ -28,7 +28,8 @@ function App() {
 
   return (
     <div className="task-root">
-      <button onClick={onAdd}>New Task</button>
+      <h2>To-Do List</h2>
+      <button onClick={onAdd} className="new-button">New Task</button>
       {tasks.map(task => <Task key = {task.id} task = {task} />)}
     </div>
   );

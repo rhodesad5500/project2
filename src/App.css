@@ -4,12 +4,18 @@ body{
   background-color: grey;
 }
 
+h2{
+  font-family: sans-serif;
+}
+
+
+
 .task-root{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 5%;
+ /* padding-top: 5%; */
   padding-bottom: 5%;
 }
 
@@ -20,21 +26,55 @@ body{
   background: black;
   position: relative;
   padding-top: 50px;
+  font-size: 20px;
+  border: solid grey 1px;
 }
 
 .due-date{
-  padding-left: 20%;
+  /* padding-left: 20%; */
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .task-info{
   padding-top: 5%;
-  padding-left: 30%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
+.edit-button{
+  margin-left: 10%;
+  margin-top: 5%;
+  position: absolute;
+}
 
+.save-button{
+  margin-left: 5px;
+}
 
+.cancel-button{
+  margin: 5px;
+}
 
+.delete-button{
+  margin-left: 30px;
+}
+
+.new-button{
+  margin-bottom: 10px;
+  padding: 10px;
+}
 
 .task{
-  color: white;
+  color: green;
+}
+
+.task-yell{
+  color: yellow;
+}
+
+.task-red{
+  color: red;
 }

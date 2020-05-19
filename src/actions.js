@@ -4,6 +4,7 @@ export const Action = Object.freeze({
     EnterEditMode: 'EnterEditMode',
     LeaveEditMode: 'LeaveEditMode',
     FinishSavingTask: 'FinishSavingTask',
+    FinishDeletingTask: 'FinishDeletingTask',
 
 });
 
@@ -24,6 +25,13 @@ export function finishAddingTask(task) {
 export function finishSavingTask(task) {
     return {
     type: Action.FinishSavingTask,
+    payload: task,
+    };
+}
+
+export function finishDeletingTask(task) {
+    return {
+    type: Action.FinishDeletingTask,
     payload: task,
     };
 }
@@ -107,6 +115,25 @@ export function startSavingTask(task) {
             .then(data => {
                 if(data.ok) {
                     dispatch(finishSavingTask(task));
+                }
+            })
+            .catch(e => console.error(e));
+    };
+}
+
+export function startDeletingTask(task) {
+    const options = {
+        method: 'DELETE',
+        
+    };
+
+    return dispatch => {
+        fetch(`${host}/tasks/${task.id}`, options)
+            .then(checkForErrors)
+            .then(response => response.json())
+            .then(data => {
+                if(data.ok) {
+                    dispatch(finishDeletingTask(task));
                 }
             })
             .catch(e => console.error(e));

@@ -17,7 +17,7 @@ function reducer(state = initialState, action) {
         case Action.FinishAddingTask:
             return {
                 ...state,
-                tasks: [action.payload, ...state.tasks],
+                tasks: [{...action.payload, isEditing: true}, ...state.tasks],
             };
         case Action.LeaveEditMode:
         return {
@@ -44,6 +44,11 @@ function reducer(state = initialState, action) {
                     }
             
              }),
+         };
+         case Action.FinishDeletingTask:
+            return {
+                ...state,
+               tasks: state.tasks.filter(task => task.id !== action.payload.id)
          };
         case Action.EnterEditMode:
         return {
